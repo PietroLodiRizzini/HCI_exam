@@ -4,14 +4,33 @@
  */
 package javafxmlapplication;
 
+import DBAccess.NavegacionDAOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+import model.Navegacion;
+import model.User;
 
 /**
  * FXML Controller class
@@ -25,7 +44,7 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField usernameField;
     @FXML
-    private Label userNameError;
+    private Text userNameError;
     @FXML
     private TextField emailField;
     @FXML
@@ -33,7 +52,7 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField passwordField;
     @FXML
-    private Label passwordError;
+    private Text passwordError;
     @FXML
     private TextField monthField;
     @FXML
@@ -48,6 +67,17 @@ public class RegisterController implements Initializable {
     private Label fileError;
     @FXML
     private Label fileLabel;
+    
+    
+    private String imgPath;
+    @FXML
+    private HBox passwordLeftHbox;
+    @FXML
+    private HBox passwordRightHbox;
+    @FXML
+    private HBox usernameLeftHBox;
+    @FXML
+    private HBox usernameRightHBox;
 
     /**
      * Initializes the controller class.
@@ -59,10 +89,104 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void registerClicked(ActionEvent event) {
+        Navegacion n;
+        try {
+            n = Navegacion.getSingletonNavegacion();
+        } catch (NavegacionDAOException ex) {
+            ex.printStackTrace();
+            return;
+        }
+        
+        String username = usernameField.getText();
+        String email = emailField.getText();
+        String password = passwordField.getText();
+        String year = yearField.getText();
+        String month = monthField.getText();
+        String day = dayField.getText();
+        LocalDate dob = null;
+        Image avatar = null;
+        
+        userNameError.setVisible(false);
+        emailError.setVisible(false);
+        passwordError.setVisible(false);
+        dobError.setVisible(false);
+        fileError.setVisible(false);
+        usernameLeftHBox.setMinHeight(60);
+        usernameRightHBox.setMinHeight(60);
+        passwordLeftHbox.setMinHeight(60);
+        passwordRightHbox.setMinHeight(60);
+        
+        if(imgPath != null) 
+            try {
+                avatar = new Image(new FileInputStream(imgPath));
+            } catch (FileNotFoundException ex) {
+                fileError.setVisible(true);
+            }
+        
+        if(n.exitsNickName(username)) {
+            userNameError.setText("This username already exists");
+            userNameError.setVisible(true);
+        }
+        else if(! username.matches("^[A-Za-z0-9_-]*$") || username.length() < 6 || username.length() > 15) {
+            userNameError.setText("Username can contain only dashes, underscores, letters ond numbers and it must be between 6 and 15 characters");
+            usernameLeftHBox.setMinHeight(80);
+            usernameRightHBox.setMinHeight(80);
+            userNameError.setVisible(true);
+        }
+        
+        if(! email.matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")) {
+            emailError.setVisible(true);
+        }
+        
+        if(!password.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[!@#$%&*()-+=]).{8,20}$")) {
+            passwordError.setVisible(true);
+            passwordLeftHbox.setMinHeight(100);
+            passwordRightHbox.setMinHeight(100);
+        }
+        
+        try {
+            dob = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+        } catch(Exception e) {
+            dobError.setVisible(true);
+        }
+        
+        if(userNameError.isVisible() || emailError.isVisible() || passwordError.isVisible() || dobError.isVisible() || fileError.isVisible())
+            return;
+        
+        User u;
+        
+        try {
+            if(avatar == null) {
+                u = n.registerUser(username, email, password, dob);
+            } else {
+                u = n.registerUser(username, email, password, avatar, dob);
+            }
+        } catch(NavegacionDAOException e) {
+            Alert a = new Alert(AlertType.ERROR);
+            a.setContentText(e.getMessage());
+            a.show();
+            return;
+        }
+        
+        ExamApplication.setUser(u);
+        
+        Alert a = new Alert(AlertType.INFORMATION);
+        a.setContentText("You were successfully registered.");
+        a.show();
+        
+        Stage s = (Stage)((Node) event.getSource()).getScene().getWindow();
+        s.close();
     }
 
     @FXML
     private void pickFileClicked(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new ExtensionFilter("PNG images", "*.png"));
+        
+        File f = fc.showOpenDialog(null);
+        fileLabel.setText("File selected: " + f.getName());
+        fileLabel.setVisible(true);
+        imgPath = f.getAbsolutePath();
     }
     
 }

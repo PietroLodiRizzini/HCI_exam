@@ -52,8 +52,6 @@ public class FXMLDocumentController implements Initializable {
     private Group zoomGroup;
 
     @FXML
-    private ListView<Poi> map_listview;
-    @FXML
     private ScrollPane map_scrollpane;
     @FXML
     private Slider zoom_slider;
@@ -63,12 +61,6 @@ public class FXMLDocumentController implements Initializable {
     private MenuItem pin_info;
     @FXML
     private Label posicion;
-    @FXML
-    private Button loginButton;
-    @FXML
-    private Button logoutButton;
-    @FXML
-    private Button registerButton;
 
     @FXML
     void zoomIn(ActionEvent event) {
@@ -101,8 +93,8 @@ public class FXMLDocumentController implements Initializable {
         map_scrollpane.setVvalue(scrollV);
     }
 
-    @FXML
     void listClicked(MouseEvent event) {
+        /*
         Poi itemSelected = map_listview.getSelectionModel().getSelectedItem();
 
         // Animación del scroll hasta la posicion del item seleccionado
@@ -123,14 +115,14 @@ public class FXMLDocumentController implements Initializable {
         map_pin.setLayoutX(itemSelected.getPosition().getX());
         map_pin.setLayoutY(itemSelected.getPosition().getY());
         pin_info.setText(itemSelected.getDescription());
-        map_pin.setVisible(true);
+        map_pin.setVisible(true);*/
     }
 
     private void initData() {
-        hm.put("2F", new Poi("2F", "Edificion del DSIC", 325, 225));
-        hm.put("Agora", new Poi("Agora", "Agora", 600, 360));
-        map_listview.getItems().add(hm.get("2F"));
-        map_listview.getItems().add(hm.get("Agora"));
+        //hm.put("2F", new Poi("2F", "Edificion del DSIC", 325, 225));
+        //hm.put("Agora", new Poi("Agora", "Agora", 600, 360));
+        //map_listview.getItems().add(hm.get("2F"));
+        //map_listview.getItems().add(hm.get("Agora"));
     }
 
     @Override
