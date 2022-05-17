@@ -77,12 +77,12 @@
       </VBox>
    </center>
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="29.0" prefWidth="919.0" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="User">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#loginClicked" text="Login" />
-                  <MenuItem mnemonicParsing="false" text="Register" onAction="#registerClicked" />
+                  <MenuItem mnemonicParsing="false" onAction="#registerClicked" text="Register" />
                   <MenuItem mnemonicParsing="false" onAction="#logoutClicked" text="Logout" />
                   <MenuItem mnemonicParsing="false" onAction="#logoutClicked" text="Edit Profile" />
             </items>
