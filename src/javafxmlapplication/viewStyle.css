@@ -1,0 +1,19 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 18 mag 2022, 15:48:07
+    Author     : lucac
+*/
+
+#anchorPaneStart{
+    -fx-background-image: url('imageMap.jpg');
+    -fx-background-size: 100% 100%;   
+}
+
+#formLogin{
+    -fx-background-color: #F0DC82;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
