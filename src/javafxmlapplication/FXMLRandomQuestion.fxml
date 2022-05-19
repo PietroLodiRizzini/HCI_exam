@@ -16,7 +16,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="134.0" prefWidth="517.0">
                <children>
-                  <TextArea editable="false" prefHeight="137.0" prefWidth="380.0" promptText="Question" />
+                  <TextArea fx:id="questionTextArea" editable="false" prefHeight="137.0" prefWidth="380.0" promptText="Question" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -24,7 +24,7 @@
             </HBox>
             <HBox prefHeight="34.0" prefWidth="600.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="Answer">
+                  <RadioButton fx:id="answer1Radio" mnemonicParsing="false" text="Answer">
                      <toggleGroup>
                         <ToggleGroup fx:id="answerToggleGroup" />
                      </toggleGroup>
@@ -33,17 +33,17 @@
             </HBox>
             <HBox prefHeight="34.0" prefWidth="600.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="Answer" toggleGroup="$answerToggleGroup" />
+                  <RadioButton fx:id="answer2Radio" mnemonicParsing="false" text="Answer" toggleGroup="$answerToggleGroup" />
                </children>
             </HBox>
             <HBox prefHeight="34.0" prefWidth="600.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="Answer" toggleGroup="$answerToggleGroup" />
+                  <RadioButton fx:id="answer3Radio" mnemonicParsing="false" text="Answer" toggleGroup="$answerToggleGroup" />
                </children>
             </HBox>
             <HBox prefHeight="34.0" prefWidth="600.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="Answer" toggleGroup="$answerToggleGroup" />
+                  <RadioButton fx:id="answer4Radio" mnemonicParsing="false" text="Answer" toggleGroup="$answerToggleGroup" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="600.0">

@@ -62,7 +62,7 @@ public class FXMLHomeLoggedInController implements Initializable {
             @Override
             public Number fromString(String string) {
                 try {
-                    return Double.parseDouble(string) / 100;
+                    return Double.parseDouble(string.substring(0, string.indexOf("%"))) / 100;
                 } catch (NumberFormatException e) {
                     return 0.0;
                 }
