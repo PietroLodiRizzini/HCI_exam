@@ -8,6 +8,7 @@ import DBAccess.NavegacionDAOException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,14 +17,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -37,10 +41,8 @@ import model.User;
  *
  * @author pietro
  */
-public class RegisterController implements Initializable {
+public class SignInControler implements Initializable {
 
-    @FXML
-    private Button registerButton;
     @FXML
     private TextField usernameField;
     @FXML
@@ -78,6 +80,8 @@ public class RegisterController implements Initializable {
     private HBox usernameLeftHBox;
     @FXML
     private HBox usernameRightHBox;
+    @FXML
+    private Button signInButton;
 
     /**
      * Initializes the controller class.
@@ -87,8 +91,7 @@ public class RegisterController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void registerClicked(ActionEvent event) {
+    private void signInClick(ActionEvent event) throws IOException {
         Navegacion n;
         try {
             n = Navegacion.getSingletonNavegacion();
@@ -170,9 +173,12 @@ public class RegisterController implements Initializable {
         
         ExamApplication.setUser(u);
         
-        Alert a = new Alert(AlertType.INFORMATION);
-        a.setContentText("You were successfully registered.");
-        a.show();
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLHomeLoggedIn.fxml"));
+        BorderPane root = (BorderPane) myLoader.load();
+        FXMLHomeLoggedInController loggedHomeController = myLoader.<FXMLHomeLoggedInController>getController();
+
+        AppInfo.setUser(u);
+        Scene scene = new Scene(root);
         
         Stage s = (Stage)((Node) event.getSource()).getScene().getWindow();
         s.close();
@@ -187,6 +193,10 @@ public class RegisterController implements Initializable {
         fileLabel.setText("File selected: " + f.getName());
         fileLabel.setVisible(true);
         imgPath = f.getAbsolutePath();
+    }
+
+    @FXML
+    private void registerClicked(ActionEvent event) {
     }
     
 }
