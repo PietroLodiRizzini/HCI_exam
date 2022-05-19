@@ -5,6 +5,9 @@
 package javafxmlapplication;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +16,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import model.Answer;
+import model.Problem;
 
 /**
  * FXML Controller class
@@ -33,6 +38,7 @@ public class FXMLRandomQuestionController implements Initializable {
     private RadioButton answer3Radio;
     @FXML
     private RadioButton answer4Radio;
+    List<RadioButton> answerRadios;
 
     /**
      * Initializes the controller class.
@@ -45,6 +51,21 @@ public class FXMLRandomQuestionController implements Initializable {
     void init(Stage stage) {
         primaryStage = stage;
         
+        answerRadios = new ArrayList<>(Arrays.asList(answer1Radio, answer2Radio, answer3Radio, answer4Radio));
+        //answerRadios.addAll({});
+        
+        List<Problem> problems = AppInfo.getSingletonNavegacion().getProblems();
+        if(problems.size() > 0) {
+            int rand = (int) (Math.random() * problems.size());
+            Problem extractedProblem = problems.get(rand);
+            questionTextArea.setText(extractedProblem.getText());
+
+            int i = 0;
+            for(Answer a : extractedProblem.getAnswers()) {            
+                answerRadios.get(i).setText(a.getText());
+                i++;
+            }
+        }
         
     }
 
