@@ -16,7 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -37,11 +39,12 @@ public class FXMLFirstScreenController implements Initializable {
     @FXML
     private Text loginError;
     @FXML
-    private TextField usernameField;
+    private TextField usernameField;   
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
     
     private Stage primaryStage;
+    
 
     /**
      * Initializes the controller class.
@@ -109,15 +112,17 @@ public class FXMLFirstScreenController implements Initializable {
 
     @FXML
     private void signInClick(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLSignIn.fxml"));
         
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLSignIn.fxml"));
+        AnchorPane root = (AnchorPane) myLoader.load();
+        SignInControler signInContr = myLoader.<SignInControler>getController();
+        
+        signInContr.initSignIn(primaryStage);
         Scene scene = new Scene(root);
-        Stage s = new Stage();
-        s.setTitle("Sign-in");
-        s.setScene(scene);
-        s.setResizable(false);
-        s.initModality(Modality.APPLICATION_MODAL);
-        s.show();
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Sign-In");
+        primaryStage.show();
     }
     
 }

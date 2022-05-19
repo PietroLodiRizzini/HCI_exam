@@ -12,7 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-size: 100% 100%;   
 }
 
-#formLogin{
+#form{
     -fx-background-color: #F0DC82;
     -fx-border-radius: 20;
     -fx-background-radius: 20;

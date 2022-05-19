@@ -82,6 +82,10 @@ public class SignInControler implements Initializable {
     private HBox usernameRightHBox;
     @FXML
     private Button signInButton;
+    
+    private Stage primaryStage;
+    private Scene primaryScene;
+    private String primaryTitle;
 
     /**
      * Initializes the controller class.
@@ -197,6 +201,12 @@ public class SignInControler implements Initializable {
 
     @FXML
     private void registerClicked(ActionEvent event) {
+    }
+
+    void initSignIn(Stage stage) {       
+        primaryStage = stage;
+        primaryScene = primaryStage.getScene();
+        primaryTitle = primaryStage.getTitle();
     }
     
 }
