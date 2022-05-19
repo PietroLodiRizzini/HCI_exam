@@ -27,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -178,6 +179,18 @@ public class SignInControler implements Initializable {
         ExamApplication.setUser(u);
         
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLHomeLoggedIn.fxml"));
+        AnchorPane root = (AnchorPane) myLoader.load();
+        FXMLHomeLoggedInController signInContr = myLoader.<FXMLHomeLoggedInController>getController();
+        
+        signInContr.initLoggedHome(primaryStage);
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Home");
+        primaryStage.show();
+        
+        /*
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLHomeLoggedIn.fxml"));
         BorderPane root = (BorderPane) myLoader.load();
         FXMLHomeLoggedInController loggedHomeController = myLoader.<FXMLHomeLoggedInController>getController();
 
@@ -185,7 +198,7 @@ public class SignInControler implements Initializable {
         Scene scene = new Scene(root);
         
         Stage s = (Stage)((Node) event.getSource()).getScene().getWindow();
-        s.close();
+        s.close(); */
     }
 
     @FXML

@@ -13,7 +13,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 #form{
-    -fx-background-color: #F0DC82;
+    -fx-background-color: #FCE4A2;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
+    
+}
+
+#form .button{
+    -fx-background-color: #FFAE70;
+}
+
+#form .button:hover{
+    -fx-background-color: #CD712A;
+    
 }
