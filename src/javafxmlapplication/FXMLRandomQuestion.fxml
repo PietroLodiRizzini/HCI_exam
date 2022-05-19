@@ -15,7 +15,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="134.0" prefWidth="517.0">
                <children>
-                  <TextArea fx:id="questionTextArea" editable="false" prefHeight="137.0" prefWidth="380.0" promptText="Question" />
+                  <TextArea fx:id="questionTextArea" editable="false" prefHeight="137.0" prefWidth="380.0" promptText="Question" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dapibus rhoncus ornare. Maecenas non tincidunt dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam dictum eros quis gravida bibendum. Phasellus malesuada neque luctus justo lobortis, ac placerat neque malesuada. Vestibulum diam nibh, placerat eu dignissim sit amet, pharetra in odio. Donec ut odio mi. Nunc tristique hendrerit eros, ut bibendum ipsum fermentum a. Praesent facilisis nibh id felis posuere auctor faucibus eu purus. Aliquam quis nunc eu enim volutpat euismod. Quisque bibendum felis id nisl hendrerit rutrum. Sed viverra ipsum in nunc facilisis, non scelerisque dui tincidunt.&#10;&#10;" wrapText="true" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />
