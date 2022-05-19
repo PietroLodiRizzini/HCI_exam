@@ -5,6 +5,7 @@
 package javafxmlapplication;
 
 import DBAccess.NavegacionDAOException;
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -17,7 +18,9 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.text.Text;
@@ -79,8 +82,17 @@ public class FXMLHomeLoggedInController implements Initializable {
     }
 
     @FXML
-    private void randomQuestionClick(ActionEvent event) {
-        
+    private void randomQuestionClick(ActionEvent event) throws IOException {
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLRandomQuestion.fxml"));
+        Parent root = myLoader.load();
+        FXMLRandomQuestionController c = myLoader.getController();
+
+        c.init(primaryStage);
+
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Random Question");
+        primaryStage.show();
     }
 
     @FXML
