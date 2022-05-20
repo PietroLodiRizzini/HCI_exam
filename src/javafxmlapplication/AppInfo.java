@@ -19,7 +19,6 @@ import model.User;
  * @author pietro
  */
 public class AppInfo {
-    private static boolean loggedIn;
     private static User user;
     
     public static final boolean DEBUG = true;
@@ -75,11 +74,7 @@ public class AppInfo {
     }
     
     public static boolean isLoggedIn() {
-        return loggedIn;
-    }
-    
-    public static void setLoggedIn(boolean loggedIn) {
-        AppInfo.loggedIn = loggedIn;
+        return user != null;
     }
     
     public static Navegacion getSingletonNavegacion() {

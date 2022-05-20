@@ -23,6 +23,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -84,12 +87,12 @@ public class FXMLHomeLoggedInController implements Initializable {
     @FXML
     private void randomQuestionClick(ActionEvent event) throws IOException {
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLRandomQuestion.fxml"));
-        Parent root = myLoader.load();
-        FXMLRandomQuestionController c = myLoader.getController();
-
+        BorderPane root = (BorderPane) myLoader.load();
+        FXMLRandomQuestionController c = myLoader.<FXMLRandomQuestionController>getController();
+        
         c.init(primaryStage);
-
         Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Random Question");
         primaryStage.show();
@@ -104,7 +107,18 @@ public class FXMLHomeLoggedInController implements Initializable {
     }
 
     @FXML
-    private void logoutClick(ActionEvent event) {
+    private void logoutClick(ActionEvent event) throws IOException {
+        AppInfo.setUser(null);
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLFirstScreen.fxml"));
+        AnchorPane root = (AnchorPane) myLoader.load();
+        FXMLFirstScreenController signInContr = myLoader.<FXMLFirstScreenController>getController();
+        
+        signInContr.initMainWindow(primaryStage);
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Sign-In");
+        primaryStage.show();
     }
     
     private double score() {
