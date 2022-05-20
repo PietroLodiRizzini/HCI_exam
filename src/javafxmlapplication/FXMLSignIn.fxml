@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,9 +12,9 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane id="anchorPaneStart" prefHeight="512.0" prefWidth="598.0" stylesheets="@viewStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.SignInControler">
+<VBox id="vboxPaneStart" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="561.0" stylesheets="@viewStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.SignInController">
    <children>
-      <BorderPane id="form" layoutX="42.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="514.0" stylesheets="@viewStyle.css">
+      <BorderPane id="form" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="505.0" stylesheets="@viewStyle.css">
          <center>
             <HBox prefHeight="311.0" prefWidth="536.0" BorderPane.alignment="CENTER">
                <children>
@@ -29,7 +28,7 @@
                               <Insets top="4.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="TOP_RIGHT" layoutX="25.0" layoutY="70.0" maxHeight="60.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="TOP_RIGHT" layoutX="25.0" layoutY="70.0" maxHeight="60.0" minHeight="60.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="E-mail:" />
                            </children>
@@ -37,7 +36,7 @@
                               <Insets top="4.0" />
                            </padding>
                         </HBox>
-                        <HBox fx:id="passwordLeftHbox" alignment="TOP_RIGHT" layoutX="25.0" layoutY="10.0" maxHeight="60.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox fx:id="passwordLeftHbox" alignment="TOP_RIGHT" layoutX="25.0" layoutY="10.0" maxHeight="60.0" minHeight="60.0" prefHeight="60.0" prefWidth="200.0">
                            <children>
                               <Label text="Password:" />
                            </children>
@@ -45,9 +44,13 @@
                               <Insets top="4.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="CENTER_RIGHT" layoutX="25.0" layoutY="70.0" maxHeight="60.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="TOP_RIGHT" layoutX="25.0" layoutY="70.0" maxHeight="60.0" minHeight="60.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Date of birth:" />
+                              <Label alignment="TOP_RIGHT" text="Date of birth:">
+                                 <HBox.margin>
+                                    <Insets top="15.0" />
+                                 </HBox.margin>
+                              </Label>
                            </children>
                            <padding>
                               <Insets top="4.0" />
@@ -63,14 +66,14 @@
                         </HBox>
                      </children>
                      <padding>
-                        <Insets left="15.0" right="15.0" />
+                        <Insets left="15.0" right="5.0" />
                      </padding>
                   </VBox>
                   <VBox prefHeight="331.0" prefWidth="326.0">
                      <children>
                         <HBox fx:id="usernameRightHBox" layoutX="10.0" layoutY="10.0" maxHeight="60.0" minHeight="60.0" prefHeight="60.0" prefWidth="200.0">
                            <children>
-                              <VBox minHeight="80.0" prefHeight="80.0" prefWidth="179.0">
+                              <VBox maxHeight="60.0" minHeight="60.0" prefHeight="100.0" prefWidth="179.0">
                                  <children>
                                     <TextField fx:id="usernameField" maxWidth="200.0" prefHeight="26.0" prefWidth="122.0" />
                                     <Text fx:id="userNameError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Username can contain only dashes, underscores, letters ond numbers and it must be between 6 and 15 characters" visible="false" wrappingWidth="325.75634765625" />
@@ -78,9 +81,9 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox prefHeight="60.0" prefWidth="200.0">
+                        <HBox maxHeight="60.0" minHeight="60.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <VBox maxWidth="250.0" prefHeight="60.0" prefWidth="254.0">
+                              <VBox maxHeight="0.0" maxWidth="250.0" prefHeight="60.0" prefWidth="254.0">
                                  <children>
                                     <TextField fx:id="emailField" maxWidth="250.0" prefHeight="26.0" prefWidth="229.0" promptText="youremail@gmail.com" />
                                     <Label fx:id="emailError" text="This email address is not valid" textFill="RED" visible="false" />
@@ -88,7 +91,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox fx:id="passwordRightHbox" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0">
+                        <HBox fx:id="passwordRightHbox" layoutX="10.0" layoutY="10.0" minHeight="60.0" prefHeight="60.0" prefWidth="200.0">
                            <children>
                               <VBox maxHeight="60.0" minHeight="60.0">
                                  <children>
@@ -98,7 +101,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <VBox prefHeight="60.0">
+                        <VBox maxHeight="60.0" minHeight="60.0" prefHeight="100.0">
                            <children>
                               <HBox prefWidth="200.0" spacing="10.0">
                                  <children>
@@ -175,7 +178,7 @@
             </HBox>
          </top>
          <bottom>
-            <Button fx:id="signInButton" mnemonicParsing="false" onAction="#registerClicked" text="Sign-In" BorderPane.alignment="CENTER_RIGHT">
+            <Button fx:id="signInButton" mnemonicParsing="false" onAction="#signInClick" text="Sign-In" BorderPane.alignment="CENTER_RIGHT">
                <BorderPane.margin>
                   <Insets bottom="50.0" right="50.0" />
                </BorderPane.margin>
@@ -184,6 +187,12 @@
          <padding>
             <Insets top="30.0" />
          </padding>
+         <VBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </VBox.margin>
       </BorderPane>
    </children>
-</AnchorPane>
+   <padding>
+      <Insets bottom="20.0" top="20.0" />
+   </padding>
+</VBox>

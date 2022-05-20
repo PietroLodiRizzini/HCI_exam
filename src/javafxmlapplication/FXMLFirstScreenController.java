@@ -20,6 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -112,10 +113,9 @@ public class FXMLFirstScreenController implements Initializable {
 
     @FXML
     private void signInClick(ActionEvent event) throws IOException {
-        
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLSignIn.fxml"));
-        AnchorPane root = (AnchorPane) myLoader.load();
-        SignInControler signInContr = myLoader.<SignInControler>getController();
+        VBox root = (VBox) myLoader.load();
+        SignInController signInContr = myLoader.<SignInController>getController();
         
         signInContr.initSignIn(primaryStage);
         Scene scene = new Scene(root);

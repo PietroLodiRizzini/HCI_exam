@@ -42,7 +42,7 @@ import model.User;
  *
  * @author pietro
  */
-public class SignInControler implements Initializable {
+public class SignInController implements Initializable {
 
     @FXML
     private TextField usernameField;
@@ -96,6 +96,7 @@ public class SignInControler implements Initializable {
         // TODO
     }    
 
+    @FXML
     private void signInClick(ActionEvent event) throws IOException {
         Navegacion n;
         try {
@@ -189,6 +190,7 @@ public class SignInControler implements Initializable {
         primaryStage.setTitle("Home");
         primaryStage.show();
         
+        
         /*
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLHomeLoggedIn.fxml"));
         BorderPane root = (BorderPane) myLoader.load();
@@ -212,9 +214,6 @@ public class SignInControler implements Initializable {
         imgPath = f.getAbsolutePath();
     }
 
-    @FXML
-    private void registerClicked(ActionEvent event) {
-    }
 
     void initSignIn(Stage stage) {       
         primaryStage = stage;
