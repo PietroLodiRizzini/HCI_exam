@@ -104,6 +104,16 @@ public class FXMLHomeLoggedInController implements Initializable {
 
     @FXML
     private void viewProfileClick(ActionEvent event) {
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLProfileView.fxml"));
+        AnchorPane root = (AnchorPane) myLoader.load();
+        FXMLProfileViewController signInContr = myLoader.<FXMLProfileViewController>getController();
+        
+        signInContr.initMainWindow(primaryStage);
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("View-Profile");
+        primaryStage.show();
     }
 
     @FXML
