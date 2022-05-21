@@ -21,7 +21,6 @@ import model.User;
  * @author jose
  */
 public class ExamApplication extends Application {
-    private static User user;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -56,13 +55,4 @@ public class ExamApplication extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
-    public static void setUser(User u){
-        user = u;
-    }
-    
-    public static User getUser() {
-        return user;
-    }
-    
 }

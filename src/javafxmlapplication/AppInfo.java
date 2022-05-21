@@ -41,6 +41,7 @@ public class AppInfo {
             return;
         }
         
+        
         /*Session s = new Session(LocalDateTime.of(2022, 05, 01, 0, 0), 10, 3);
         try {
             n.getUser(DEBUG_USERNAME).addSession(s);

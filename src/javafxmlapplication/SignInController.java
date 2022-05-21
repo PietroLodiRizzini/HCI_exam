@@ -98,74 +98,24 @@ public class SignInController implements Initializable {
 
     @FXML
     private void signInClick(ActionEvent event) throws IOException {
-        Navegacion n;
-        try {
-            n = Navegacion.getSingletonNavegacion();
-        } catch (NavegacionDAOException ex) {
-            ex.printStackTrace();
-            return;
-        }
+        Navegacion n = AppInfo.getSingletonNavegacion();
         
-        String username = usernameField.getText();
-        String email = emailField.getText();
-        String password = passwordField.getText();
-        String year = yearField.getText();
-        String month = monthField.getText();
-        String day = dayField.getText();
-        LocalDate dob = null;
-        Image avatar = null;
+        String username = ValidationUtils.validateUsername(usernameField, userNameError, usernameLeftHBox, usernameRightHBox);
+        String email = ValidationUtils.validateEmail(emailField, emailError);
+        String password = ValidationUtils.validatePassword(passwordField, passwordError, passwordLeftHbox, passwordRightHbox);
+        LocalDate dob = ValidationUtils.validateDOB(yearField, monthField, dayField, dobError);
+        Image avatar = ValidationUtils.validateImage(imgPath, fileError);
         
-        userNameError.setVisible(false);
-        emailError.setVisible(false);
-        passwordError.setVisible(false);
-        dobError.setVisible(false);
-        fileError.setVisible(false);
-        usernameLeftHBox.setMinHeight(60);
-        usernameRightHBox.setMinHeight(60);
-        passwordLeftHbox.setMinHeight(60);
-        passwordRightHbox.setMinHeight(60);
-        
-        if(imgPath != null) 
-            try {
-                avatar = new Image(new FileInputStream(imgPath));
-            } catch (FileNotFoundException ex) {
-                fileError.setVisible(true);
-            }
-        
-        if(n.exitsNickName(username)) {
-            userNameError.setText("This username already exists");
-            userNameError.setVisible(true);
-        }
-        else if(! username.matches("^[A-Za-z0-9_-]*$") || username.length() < 6 || username.length() > 15) {
-            userNameError.setText("Username can contain only dashes, underscores, letters ond numbers and it must be between 6 and 15 characters");
-            usernameLeftHBox.setMinHeight(80);
-            usernameRightHBox.setMinHeight(80);
-            userNameError.setVisible(true);
-        }
-        
-        if(! email.matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")) {
-            emailError.setVisible(true);
-        }
-        
-        if(!password.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[!@#$%&*()-+=]).{8,20}$")) {
-            passwordError.setVisible(true);
-            passwordLeftHbox.setMinHeight(100);
-            passwordRightHbox.setMinHeight(100);
-        }
-        
-        try {
-            dob = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-        } catch(Exception e) {
-            dobError.setVisible(true);
-        }
-        
-        if(userNameError.isVisible() || emailError.isVisible() || passwordError.isVisible() || dobError.isVisible() || fileError.isVisible())
+        if(username == null || email == null || password == null || dob == null)
             return;
         
+        if(imgPath != null && avatar == null)
+            return;
+
         User u;
         
         try {
-            if(avatar == null) {
+            if(imgPath == null) {
                 u = n.registerUser(username, email, password, dob);
             } else {
                 u = n.registerUser(username, email, password, avatar, dob);
@@ -177,31 +127,19 @@ public class SignInController implements Initializable {
             return;
         }
         
-        ExamApplication.setUser(u);
+        AppInfo.setUser(u);
         
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLHomeLoggedIn.fxml"));
         AnchorPane root = (AnchorPane) myLoader.load();
-        FXMLHomeLoggedInController signInContr = myLoader.<FXMLHomeLoggedInController>getController();
+        FXMLHomeLoggedInController c = myLoader.<FXMLHomeLoggedInController>getController();
         
-        signInContr.initLoggedHome(primaryStage);
+        c.initLoggedHome(primaryStage);
         Scene scene = new Scene(root);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Home");
         primaryStage.show();
-        
-        
-        /*
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLHomeLoggedIn.fxml"));
-        BorderPane root = (BorderPane) myLoader.load();
-        FXMLHomeLoggedInController loggedHomeController = myLoader.<FXMLHomeLoggedInController>getController();
-
-        AppInfo.setUser(u);
-        Scene scene = new Scene(root);
-        
-        Stage s = (Stage)((Node) event.getSource()).getScene().getWindow();
-        s.close(); */
-    }
+    }    
 
     @FXML
     private void pickFileClicked(ActionEvent event) {

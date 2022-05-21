@@ -25,6 +25,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -99,11 +101,31 @@ public class FXMLHomeLoggedInController implements Initializable {
     }
 
     @FXML
-    private void showResultsClick(ActionEvent event) {
+    private void viewProfileClick(ActionEvent event) throws IOException {
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLRandomQuestion.fxml"));
+        BorderPane root = (BorderPane) myLoader.load();
+        FXMLRandomQuestionController c = myLoader.<FXMLRandomQuestionController>getController();
+        
+        c.init(primaryStage);
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Random Question");
+        primaryStage.show();
     }
 
     @FXML
-    private void viewProfileClick(ActionEvent event) {
+    private void showResultsClick(ActionEvent event) throws IOException {
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLShowResults.fxml"));
+        VBox root = (VBox) myLoader.load();
+        FXMLShowResultsController c = myLoader.<FXMLShowResultsController>getController();
+        
+        c.init(primaryStage);
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Results");
+        primaryStage.show();
     }
 
     @FXML

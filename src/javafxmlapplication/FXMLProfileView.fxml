@@ -1,91 +1,208 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="anchorPaneStart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@viewStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLProfileViewController">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="862.0" spacing="50.0" styleClass="background" stylesheets="@viewStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLProfileViewController">
    <children>
-      <GridPane alignment="CENTER" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="10.0" prefWidth="35.60001220703123" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.5999755859375" minWidth="10.0" prefWidth="231.00002441406247" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="369.60003662109375" minWidth="10.0" prefWidth="358.9999755859375" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="120.0" minHeight="3.199981689453125" prefHeight="45.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="308.8000183105469" minHeight="10.0" prefHeight="265.20000610351565" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <VBox id="form" prefHeight="431.0" prefWidth="261.0" stylesheets="@viewStyle.css">
          <children>
-            <VBox id="form" prefHeight="266.0" prefWidth="450.0" stylesheets="@viewStyle.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <HBox alignment="CENTER" prefHeight="17.0" prefWidth="176.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
                <children>
-                  <HBox prefHeight="43.0" prefWidth="182.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your Information">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </HBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your profile picture" textAlignment="CENTER" wrappingWidth="174.67926025390625">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
                </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </VBox>
-            <VBox id="form" prefHeight="266.0" prefWidth="450.0" stylesheets="@viewStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="314.0" prefWidth="221.0">
                <children>
-                  <HBox prefHeight="17.0" prefWidth="176.0">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" textAlignment="CENTER" wrappingWidth="174.67926025390625">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Text>
+                        <ImageView fx:id="profilePicture" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <VBox alignment="CENTER" prefHeight="36.0" prefWidth="206.0" spacing="5.0">
                      <children>
-                        <Circle fx:id="profileCircle" fill="DODGERBLUE" radius="87.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="BLUE" onMouseClicked="#changePictureClick" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Profile Picture" textAlignment="CENTER" underline="true" wrappingWidth="167.6754150390625" />
+                        <Label fx:id="fileError" text="File not found" textFill="RED" visible="false" />
                      </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                     <children>
-                        <Text fill="BLUE" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Profile Picture" textAlignment="CENTER" underline="true" wrappingWidth="167.6754150390625">
-                           <HBox.margin>
-                              <Insets top="5.0" />
-                           </HBox.margin>
-                        </Text>
-                     </children>
-                  </HBox>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
             </VBox>
          </children>
-      </GridPane>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+      <VBox id="form" prefHeight="431.0" prefWidth="513.0" stylesheets="@viewStyle.css">
+         <children>
+            <HBox prefHeight="43.0" prefWidth="182.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your Information">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="311.0" prefWidth="0.0">
+               <children>
+                  <VBox minWidth="120.0" prefHeight="311.0" prefWidth="95.0">
+                     <children>
+                        <HBox fx:id="usernameLeftHBox" alignment="TOP_RIGHT" maxHeight="60.0" minHeight="60.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Username:" />
+                           </children>
+                           <padding>
+                              <Insets top="4.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" layoutX="25.0" layoutY="70.0" maxHeight="60.0" minHeight="60.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="E-mail:" />
+                           </children>
+                           <padding>
+                              <Insets top="4.0" />
+                           </padding>
+                        </HBox>
+                        <HBox fx:id="passwordLeftHbox" alignment="TOP_RIGHT" layoutX="25.0" layoutY="10.0" maxHeight="60.0" minHeight="60.0" prefHeight="60.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Password:" />
+                           </children>
+                           <padding>
+                              <Insets top="4.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" layoutX="25.0" layoutY="70.0" maxHeight="60.0" minHeight="60.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="TOP_RIGHT" text="Date of birth:">
+                                 <HBox.margin>
+                                    <Insets top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets top="4.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="311.0" prefWidth="168.0">
+                     <children>
+                        <HBox fx:id="usernameRightHBox" layoutX="10.0" layoutY="10.0" maxHeight="60.0" minHeight="60.0" prefHeight="60.0" prefWidth="200.0">
+                           <children>
+                              <VBox maxHeight="60.0" maxWidth="20.0" minHeight="60.0" prefHeight="60.0" prefWidth="200.0">
+                                 <children>
+                                    <TextField fx:id="usernameField" editable="false" maxWidth="200.0" prefHeight="26.0" prefWidth="122.0" />
+                                    <Text fx:id="userNameError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Username can contain only dashes, underscores, letters ond numbers and it must be between 6 and 15 characters" visible="false" wrappingWidth="325.75634765625" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox maxHeight="60.0" minHeight="60.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox maxHeight="0.0" maxWidth="250.0" prefHeight="60.0" prefWidth="254.0">
+                                 <children>
+                                    <TextField fx:id="emailField" maxWidth="250.0" prefHeight="26.0" prefWidth="229.0" promptText="youremail@gmail.com" />
+                                    <Label fx:id="emailError" text="This email address is not valid" textFill="RED" visible="false" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="passwordRightHbox" layoutX="10.0" layoutY="10.0" minHeight="60.0" prefHeight="60.0" prefWidth="200.0">
+                           <children>
+                              <VBox maxHeight="60.0" minHeight="60.0">
+                                 <children>
+                                    <PasswordField fx:id="passwordField" maxWidth="250.0" />
+                                    <Text fx:id="passwordError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Password must contain between 8 and 20 characters, incorporate at least one upper case letter, one lower case letter, and one symbol (!@#$%&amp;*()-+=)" visible="false" wrappingWidth="304.59375" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox maxHeight="60.0" minHeight="60.0" prefHeight="100.0">
+                           <children>
+                              <HBox prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <VBox prefHeight="42.0" prefWidth="58.0">
+                                       <children>
+                                          <Label text="Day:">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="dayField" prefHeight="26.0" prefWidth="62.0" promptText="Day" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="42.0" prefWidth="62.0">
+                                       <children>
+                                          <Label text="Month:">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="monthField" prefHeight="26.0" prefWidth="62.0" promptText="Month" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label text="Year:">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="yearField" prefHeight="26.0" prefWidth="62.0" promptText="Year" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Label fx:id="dobError" text="Invalid date" textFill="RED" visible="false" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="13.0" prefWidth="326.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="cancelButon" alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#backToMainClick" text="Cancel" textAlignment="CENTER" />
+                              <Button fx:id="fileButton11" layoutX="270.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateProfileClick" text="Update" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
    </children>
-</AnchorPane>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</HBox>
