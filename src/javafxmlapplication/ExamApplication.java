@@ -43,7 +43,7 @@ public class ExamApplication extends Application {
         stage.setScene(scene);
         //stage configuration
         stage.setTitle("ExamApp");
-        stage.setResizable(false); 
+        stage.setResizable(true); 
         //Show the stage/window
         stage.show();
 
