@@ -124,7 +124,7 @@ public class FXMLProfileViewController implements Initializable {
         FXMLHomeLoggedInController c = myLoader.<FXMLHomeLoggedInController>getController();
         
         c.initLoggedHome(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight()-38);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Your profile");
@@ -209,7 +209,7 @@ public class FXMLProfileViewController implements Initializable {
         FXMLHomeLoggedInController c = myLoader.<FXMLHomeLoggedInController>getController();
         
         c.initLoggedHome(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight()-38);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Home");
