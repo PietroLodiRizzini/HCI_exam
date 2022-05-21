@@ -136,7 +136,7 @@ public class SignInController implements Initializable {
         FXMLHomeLoggedInController c = myLoader.<FXMLHomeLoggedInController>getController();
         
         c.initLoggedHome(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight()-38);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Home");
@@ -168,7 +168,7 @@ public class SignInController implements Initializable {
         FXMLFirstScreenController c = myLoader.<FXMLFirstScreenController>getController();
         
         c.initMainWindow(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight()-38);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Log-in");
