@@ -102,11 +102,11 @@ public class FXMLHomeLoggedInController implements Initializable {
 
     @FXML
     private void viewProfileClick(ActionEvent event) throws IOException {
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLRandomQuestion.fxml"));
-        BorderPane root = (BorderPane) myLoader.load();
-        FXMLRandomQuestionController c = myLoader.<FXMLRandomQuestionController>getController();
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLProfileView.fxml"));
+        HBox root = (HBox) myLoader.load();
+        FXMLProfileViewController c = myLoader.<FXMLProfileViewController>getController();
         
-        c.init(primaryStage);
+        c.initMainWindow(primaryStage);
         Scene scene = new Scene(root);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
