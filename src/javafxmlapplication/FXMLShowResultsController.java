@@ -6,6 +6,7 @@ package javafxmlapplication;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Session;
 
@@ -29,10 +33,17 @@ public class FXMLShowResultsController implements Initializable {
     private DatePicker fromDP;
     @FXML
     private DatePicker toDP;
-    @FXML
     private ListView<Session> resultsListView;
     
     private ObservableList<Session> sessions;
+    @FXML
+    private TableView<Session> table;
+    @FXML
+    private TableColumn<Session, LocalDateTime> dateCol;
+    @FXML
+    private TableColumn<Session, Integer> hitsCol;
+    @FXML
+    private TableColumn<Session, Integer> faultsCol;
     /**
      * Initializes the controller class.
      */
@@ -50,7 +61,10 @@ public class FXMLShowResultsController implements Initializable {
         toDP.setValue(to);
         
         sessions = FXCollections.observableArrayList();
-        resultsListView.setItems(sessions);
+        table.setItems(sessions);
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("timeStamp"));
+        hitsCol.setCellValueFactory(new PropertyValueFactory<>("hits"));
+        faultsCol.setCellValueFactory(new PropertyValueFactory<>("faults"));
     }
 
     @FXML
