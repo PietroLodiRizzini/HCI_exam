@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -44,6 +45,8 @@ public class FXMLShowResultsController implements Initializable {
     private TableColumn<Session, Integer> hitsCol;
     @FXML
     private TableColumn<Session, Integer> faultsCol;
+    @FXML
+    private Button filterButton;
     /**
      * Initializes the controller class.
      */
@@ -65,6 +68,8 @@ public class FXMLShowResultsController implements Initializable {
         dateCol.setCellValueFactory(new PropertyValueFactory<>("timeStamp"));
         hitsCol.setCellValueFactory(new PropertyValueFactory<>("hits"));
         faultsCol.setCellValueFactory(new PropertyValueFactory<>("faults"));
+        
+        filterButton.fire();
     }
 
     @FXML

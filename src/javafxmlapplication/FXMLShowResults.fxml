@@ -42,7 +42,7 @@
                               <DatePicker fx:id="toDP" />
                            </children>
                         </HBox>
-                        <Button mnemonicParsing="false" onAction="#filterClick" text="Filter" />
+                        <Button fx:id="filterButton" mnemonicParsing="false" onAction="#filterClick" text="Filter" />
                      </children>
                   </HBox>
                   <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0">
