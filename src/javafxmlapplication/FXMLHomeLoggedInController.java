@@ -93,7 +93,7 @@ public class FXMLHomeLoggedInController implements Initializable {
         FXMLRandomQuestionController c = myLoader.<FXMLRandomQuestionController>getController();
         
         c.init(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight()-38);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Random Question");
@@ -107,7 +107,7 @@ public class FXMLHomeLoggedInController implements Initializable {
         FXMLProfileViewController c = myLoader.<FXMLProfileViewController>getController();
         
         c.initMainWindow(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight()-38);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Random Question");
@@ -121,7 +121,7 @@ public class FXMLHomeLoggedInController implements Initializable {
         FXMLShowResultsController c = myLoader.<FXMLShowResultsController>getController();
         
         c.init(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight()-38);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Results");
@@ -136,7 +136,7 @@ public class FXMLHomeLoggedInController implements Initializable {
         FXMLFirstScreenController signInContr = myLoader.<FXMLFirstScreenController>getController();
         
         signInContr.initMainWindow(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight()-38);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Sign-In");
