@@ -4,6 +4,7 @@
  */
 package javafxmlapplication;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Session;
 
@@ -29,7 +32,7 @@ import model.Session;
  * @author pietro
  */
 public class FXMLShowResultsController implements Initializable {
-    private Stage scene;
+    private Stage primaryStage;
     @FXML
     private DatePicker fromDP;
     @FXML
@@ -47,6 +50,8 @@ public class FXMLShowResultsController implements Initializable {
     private TableColumn<Session, Integer> faultsCol;
     @FXML
     private Button filterButton;
+    @FXML
+    private Button homeButton;
     /**
      * Initializes the controller class.
      */
@@ -55,8 +60,8 @@ public class FXMLShowResultsController implements Initializable {
         // TODO
     }    
     
-    public void init(Stage scene) {
-        this.scene = scene;
+    public void init(Stage stage) {
+        this.primaryStage = stage;
         LocalDate to = LocalDate.now();
         LocalDate from = to.minusMonths(1);
         
@@ -81,6 +86,20 @@ public class FXMLShowResultsController implements Initializable {
                     && s.getLocalDate().isBefore(toDP.getValue()))
                 sessions.add(s);
         }
+    }
+
+    @FXML
+    private void handleHomeButton(ActionEvent event) throws IOException {
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLHomeLoggedIn.fxml"));
+        AnchorPane root = (AnchorPane) myLoader.load();
+        FXMLHomeLoggedInController c = myLoader.<FXMLHomeLoggedInController>getController();
+        
+        c.initLoggedHome(primaryStage);
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Home");
+        primaryStage.show();
     }
     
 }

@@ -6,17 +6,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="669.0" styleClass="background" stylesheets="@viewStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLShowResultsController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="669.0" styleClass="background" stylesheets="@viewStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLShowResultsController">
    <children>
-      <BorderPane id="form" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@viewStyle.css">
+      <ToolBar prefHeight="106.0" prefWidth="670.0" stylesheets="@viewStyle.css">
+        <items>
+          <Button fx:id="homeButton" mnemonicParsing="false" onAction="#handleHomeButton" text="Home" />
+        </items>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </ToolBar>
+      <BorderPane id="form" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="600.0" stylesheets="@viewStyle.css">
          <top>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your results" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your Results:" BorderPane.alignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
@@ -26,7 +35,7 @@
             </Text>
          </top>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="363.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="27.0" prefWidth="570.0" spacing="15.0">
                      <children>
@@ -64,6 +73,6 @@
       </BorderPane>
    </children>
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="20.0" />
    </padding>
 </VBox>

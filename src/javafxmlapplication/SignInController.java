@@ -87,6 +87,8 @@ public class SignInController implements Initializable {
     private Stage primaryStage;
     private Scene primaryScene;
     private String primaryTitle;
+    @FXML
+    private Button backButton;
 
     /**
      * Initializes the controller class.
@@ -157,6 +159,20 @@ public class SignInController implements Initializable {
         primaryStage = stage;
         primaryScene = primaryStage.getScene();
         primaryTitle = primaryStage.getTitle();
+    }
+
+    @FXML
+    private void handleBackButton(ActionEvent event) throws IOException {
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLFirstScreen.fxml"));
+        AnchorPane root = (AnchorPane) myLoader.load();
+        FXMLFirstScreenController c = myLoader.<FXMLFirstScreenController>getController();
+        
+        c.initMainWindow(primaryStage);
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Log-in");
+        primaryStage.show();
     }
     
 }

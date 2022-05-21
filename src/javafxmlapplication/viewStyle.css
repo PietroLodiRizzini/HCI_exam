@@ -19,8 +19,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     
 }
 
+#form:hover{
+    -fx-background-color:#FFD597;
+    
+}
+
 #form .button{
     -fx-background-color: #FFAE70;
+    border-color:black;
+    border-style: solid;
 }
 
 #form .button:hover{

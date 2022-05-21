@@ -93,6 +93,8 @@ public class FXMLProfileViewController implements Initializable {
     private Button cancelButon;
     @FXML
     private Button fileButton11;
+    @FXML
+    private Button homeButton;
     
 
     /**
@@ -198,6 +200,20 @@ public class FXMLProfileViewController implements Initializable {
         a.setTitle("Success");
         a.setHeaderText("Profile updated successfully!");
         a.show();
+    }
+
+    @FXML
+    private void handleHomeButton(ActionEvent event) throws IOException {
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLHomeLoggedIn.fxml"));
+        AnchorPane root = (AnchorPane) myLoader.load();
+        FXMLHomeLoggedInController c = myLoader.<FXMLHomeLoggedInController>getController();
+        
+        c.initLoggedHome(primaryStage);
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Home");
+        primaryStage.show();
     }
     
 }

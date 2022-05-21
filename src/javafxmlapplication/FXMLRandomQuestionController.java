@@ -4,6 +4,7 @@
  */
 package javafxmlapplication;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,10 +12,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Answer;
 import model.Problem;
@@ -39,6 +44,8 @@ public class FXMLRandomQuestionController implements Initializable {
     @FXML
     private RadioButton answer4Radio;
     List<RadioButton> answerRadios;
+    @FXML
+    private Button homeButton;
 
     /**
      * Initializes the controller class.
@@ -71,6 +78,20 @@ public class FXMLRandomQuestionController implements Initializable {
 
     @FXML
     private void confirmClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleHomeButton(ActionEvent event) throws IOException {
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLHomeLoggedIn.fxml"));
+        AnchorPane root = (AnchorPane) myLoader.load();
+        FXMLHomeLoggedInController c = myLoader.<FXMLHomeLoggedInController>getController();
+        
+        c.initLoggedHome(primaryStage);
+        Scene scene = new Scene(root);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Home");
+        primaryStage.show();
     }
     
 }
