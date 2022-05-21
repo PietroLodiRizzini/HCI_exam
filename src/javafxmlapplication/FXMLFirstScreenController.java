@@ -58,7 +58,8 @@ public class FXMLFirstScreenController implements Initializable {
     
     public void initMainWindow(Stage stage){
             primaryStage = stage;
-    
+            stage.setMinWidth(700.0);
+            stage.setMinHeight(500.0);
     }
 
     @FXML
@@ -99,7 +100,7 @@ public class FXMLFirstScreenController implements Initializable {
                 loggedHomeController.initLoggedHome(primaryStage);
                 
                 //We create the scene foe win1
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight() - 38);
                 //we assign new scene to current stage/window
                 primaryStage.setScene(scene);
                 primaryStage.setTitle("Logged");
@@ -118,7 +119,7 @@ public class FXMLFirstScreenController implements Initializable {
         SignInController signInContr = myLoader.<SignInController>getController();
         
         signInContr.initSignIn(primaryStage);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight() - 38);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
         primaryStage.setTitle("Sign-In");
