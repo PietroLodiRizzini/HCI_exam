@@ -17,12 +17,11 @@
    <children>
       <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox id="anchorPaneStart" prefHeight="500.0" prefWidth="700.0" stylesheets="@viewStyle.css">
+            <VBox id="anchorPaneStart" prefHeight="500.0" prefWidth="800.0" stylesheets="@viewStyle.css">
                <children>
                   <HBox prefHeight="77.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="661.0" VBox.vgrow="ALWAYS">
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="661.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <VBox prefHeight="400.0" prefWidth="44.0" HBox.hgrow="ALWAYS" />
                         <VBox id="form" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="262.0" prefWidth="334.0" stylesheets="@viewStyle.css" HBox.hgrow="ALWAYS">
                            <children>
                               <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="252.0" VBox.vgrow="ALWAYS">
@@ -54,12 +53,21 @@
                                        </font>
                                     </Text>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="290.0" VBox.vgrow="ALWAYS" />
                            </children>
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
                         </VBox>
-                        <VBox prefHeight="400.0" prefWidth="67.0" HBox.hgrow="ALWAYS" />
-                        <VBox id="form" prefHeight="262.0" prefWidth="247.0" stylesheets="@viewStyle.css" HBox.hgrow="ALWAYS">
+                        <VBox prefHeight="400.0" prefWidth="67.0" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></VBox>
+                        <VBox id="form" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="262.0" prefWidth="247.0" stylesheets="@viewStyle.css" HBox.hgrow="ALWAYS">
                            <children>
                               <HBox prefHeight="0.0" prefWidth="236.0">
                                  <children>
@@ -158,8 +166,14 @@
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
+                           <HBox.margin>
+                              <Insets right="60.0" />
+                           </HBox.margin>
                         </VBox>
                      </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </HBox>
                   <HBox prefHeight="67.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
                </children>
