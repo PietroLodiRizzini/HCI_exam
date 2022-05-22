@@ -59,8 +59,8 @@ public class FXMLFirstScreenController implements Initializable {
     
     public void initMainWindow(Stage stage){
             primaryStage = stage;
-            stage.setMinWidth(700.0);
-            stage.setMinHeight(500.0);
+            stage.setMinWidth(850.0);
+            stage.setMinHeight(550.0);
     }
 
     @FXML
