@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.FXMLQuestionController">
+   <center>
+      <VBox prefHeight="697.0" prefWidth="959.0" stylesheets="@../resources/estilos.css">
+         <children>
+            <SplitPane dividerPositions="0.3322884012539185" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="600.0" prefWidth="959.0" VBox.vgrow="ALWAYS">
+               <items>
+                  <VBox alignment="CENTER" prefHeight="600.0" prefWidth="600.0">
+                     <children>
+                        <ListView fx:id="map_listview" onMouseClicked="#listClicked" prefHeight="200.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="134.0" prefWidth="517.0">
+                           <children>
+                              <TextArea fx:id="questionTextArea" editable="false" prefHeight="137.0" prefWidth="380.0" promptText="Question" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dapibus rhoncus ornare. Maecenas non tincidunt dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam dictum eros quis gravida bibendum. Phasellus malesuada neque luctus justo lobortis, ac placerat neque malesuada. Vestibulum diam nibh, placerat eu dignissim sit amet, pharetra in odio. Donec ut odio mi. Nunc tristique hendrerit eros, ut bibendum ipsum fermentum a. Praesent facilisis nibh id felis posuere auctor faucibus eu purus. Aliquam quis nunc eu enim volutpat euismod. Quisque bibendum felis id nisl hendrerit rutrum. Sed viverra ipsum in nunc facilisis, non scelerisque dui tincidunt.&#10;&#10;" wrapText="true" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="34.0" prefWidth="600.0">
+                           <children>
+                              <RadioButton fx:id="answer1Radio" mnemonicParsing="false" text="Answer">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="answerToggleGroup" />
+                                 </toggleGroup>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="34.0" prefWidth="600.0">
+                           <children>
+                              <RadioButton fx:id="answer2Radio" mnemonicParsing="false" text="Answer" toggleGroup="$answerToggleGroup" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="34.0" prefWidth="600.0">
+                           <children>
+                              <RadioButton fx:id="answer3Radio" mnemonicParsing="false" text="Answer" toggleGroup="$answerToggleGroup" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="34.0" prefWidth="600.0">
+                           <children>
+                              <RadioButton fx:id="answer4Radio" mnemonicParsing="false" text="Answer" toggleGroup="$answerToggleGroup" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="600.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#confirmClick" text="Check" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <VBox VBox.vgrow="NEVER">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                           <children>
+                              <ToolBar prefHeight="40.0" prefWidth="200.0">
+                                <items>
+                                  <Button fx:id="markPointBtn" mnemonicParsing="false" onAction="#markPointClick" text="Mark point" />
+                                </items>
+                              </ToolBar>
+                              <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="5.0">
+                                 <children>
+                                    <Label text="Zoom" />
+                                    <Button mnemonicParsing="false" onAction="#zoomOut" text="-" />
+                                    <Slider fx:id="zoom_slider" HBox.hgrow="SOMETIMES" />
+                                    <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#zoomIn" text="+" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <ScrollPane fx:id="map_scrollpane" hbarPolicy="ALWAYS" onMouseMoved="#muestraPosicion" pannable="true" prefWidth="358.0" vbarPolicy="ALWAYS">
+                           <content>
+                              <Pane onMouseClicked="#paneMouseClick" prefWidth="1386.0">
+                                 <children>
+                                    <ImageView pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../resources/carta_nautica.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <MenuButton fx:id="map_pin" mnemonicParsing="false" prefHeight="60.0" prefWidth="48.0" visible="false">
+                                       <items>
+                                          <MenuItem fx:id="pin_info" mnemonicParsing="false" text="Action 1" />
+                                       </items>
+                                       <styleClass>
+                                          <String fx:value="menu-button" />
+                                          <String fx:value="map-pin" />
+                                       </styleClass>
+                                    </MenuButton>
+                                 </children>
+                              </Pane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </items>
+            </SplitPane>
+            <HBox alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308">
+               <children>
+                  <Label fx:id="posicion" minHeight="-Infinity" minWidth="-Infinity" text="SceneX:     ScenY:     " wrapText="true" HBox.hgrow="ALWAYS" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="12.0" right="12.0" top="6.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button mnemonicParsing="false" text="Back" />
+        </items>
+      </ToolBar>
+   </top>
+</BorderPane>

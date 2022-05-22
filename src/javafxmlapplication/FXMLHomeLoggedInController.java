@@ -88,11 +88,11 @@ public class FXMLHomeLoggedInController implements Initializable {
 
     @FXML
     private void randomQuestionClick(ActionEvent event) throws IOException {
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLRandomQuestion.fxml"));
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLQuestion.fxml"));
         BorderPane root = (BorderPane) myLoader.load();
-        FXMLRandomQuestionController c = myLoader.<FXMLRandomQuestionController>getController();
+        FXMLQuestionController c = myLoader.<FXMLQuestionController>getController();
         
-        c.init(primaryStage);
+        c.init(primaryStage, null);
         Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight()-38);
         //we asign new scene to current stage/window
         primaryStage.setScene(scene);
