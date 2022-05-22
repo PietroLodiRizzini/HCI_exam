@@ -82,8 +82,8 @@ public class FXMLShowResultsController implements Initializable {
         sessions.clear();
         
         for(Session s : AppInfo.getUser().getSessions()) {
-            if (s.getLocalDate().isAfter(fromDP.getValue())
-                    && s.getLocalDate().isBefore(toDP.getValue()))
+            if (s.getTimeStamp().isAfter(fromDP.getValue().atStartOfDay())
+                    && s.getTimeStamp().isBefore(toDP.getValue().plusDays(1).atStartOfDay()))
                 sessions.add(s);
         }
     }

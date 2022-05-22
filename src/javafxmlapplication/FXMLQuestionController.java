@@ -27,8 +27,11 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -83,8 +86,6 @@ public class FXMLQuestionController implements Initializable {
     private ScrollPane map_scrollpane;
     
     private MenuItem pin_info;
-    @FXML
-    private Label posicion;
     private ListView<Poi> map_listview;
     @FXML
     private Pane mapPane;
@@ -105,6 +106,9 @@ public class FXMLQuestionController implements Initializable {
     private ToggleButton addTextBtn;
     @FXML
     private ColorPicker colorPicker;
+    
+    private Problem problem;
+    int correctAnswer;
 
     /**
      * Initializes the controller class.
@@ -140,31 +144,7 @@ public class FXMLQuestionController implements Initializable {
         zoomGroup.getChildren().add(map_scrollpane.getContent());
         map_scrollpane.setContent(contentGroup);
     }
-    
-    void listClicked(MouseEvent event) {
-        /*
-        Poi itemSelected = map_listview.getSelectionModel().getSelectedItem();
 
-        // Animación del scroll hasta la posicion del item seleccionado
-        double mapWidth = zoomGroup.getBoundsInLocal().getWidth();
-        double mapHeight = zoomGroup.getBoundsInLocal().getHeight();
-        double scrollH = itemSelected.getPosition().getX() / mapWidth;
-        double scrollV = itemSelected.getPosition().getY() / mapHeight;
-        final Timeline timeline = new Timeline();
-        final KeyValue kv1 = new KeyValue(map_scrollpane.hvalueProperty(), scrollH);
-        final KeyValue kv2 = new KeyValue(map_scrollpane.vvalueProperty(), scrollV);
-        final KeyFrame kf = new KeyFrame(Duration.millis(500), kv1, kv2);
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
-
-        // movemos el objto map_pin hasta la posicion del POI
-        double pinW = map_pin.getBoundsInLocal().getWidth();
-        double pinH = map_pin.getBoundsInLocal().getHeight();
-        map_pin.setLayoutX(itemSelected.getPosition().getX());
-        map_pin.setLayoutY(itemSelected.getPosition().getY());
-        pin_info.setText(itemSelected.getDescription());
-        map_pin.setVisible(true);*/
-    }
     
     /**
      * Init problem related fields with data from problem arg or an extracted problem if the arg is null.
@@ -183,16 +163,51 @@ public class FXMLQuestionController implements Initializable {
             }
         }
         
+        this.problem = problem;
+        
         questionTextArea.setText(problem.getText());
         
         List<Answer> answers = problem.getAnswers();
         //Collections.shuffle(answers);
         for(int i = 0; i < Math.min(answerRadios.size(), answers.size()); i++)
             answerRadios.get(i).setText(answers.get(i).getText());
+        for(int i = 0; i < problem.getAnswers().size(); i++)
+            if(problem.getAnswers().get(i).getValidity())
+                correctAnswer = i;
+                
     }
 
     @FXML
     private void confirmClick(ActionEvent event) {
+        
+        boolean correct = false;
+        for(int i = 0; i < answerRadios.size(); i++) {
+            if(answerToggleGroup.getSelectedToggle() == answerRadios.get(i) && correctAnswer == i) {
+                correct = true;
+            }
+        }
+        
+        if(correct) {
+            AppInfo.incrementHits();
+            Alert a = new Alert(AlertType.INFORMATION);
+            a.setHeaderText("Answer is correct!");
+            a.setOnCloseRequest(this::onAlertClose);
+            a.show();
+        } else {
+            AppInfo.incrementFaults();
+            Alert a = new Alert(AlertType.INFORMATION);
+            a.setHeaderText("Answer is not correct :(");
+            a.setOnCloseRequest(this::onAlertClose);
+            a.show();
+        }
+    }
+    
+    /**
+     * When currect/incorrect answer alert is closed, a new random problem is loaded.
+     * @param e 
+     */
+    private void onAlertClose(DialogEvent e) {
+        this.initProblem(null);
     }
 
     private void handleHomeButton(ActionEvent event) throws IOException {
@@ -379,6 +394,25 @@ public class FXMLQuestionController implements Initializable {
         
         if(selectedToggle != drawPointBtn)
         drawToggle.selectToggle(null);
+    }
+
+    @FXML
+    private void backClick(ActionEvent event) {
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLHomeLoggedIn.fxml"));
+        AnchorPane root = null;
+        try {
+            root = (AnchorPane) myLoader.load();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        FXMLHomeLoggedInController c = myLoader.<FXMLHomeLoggedInController>getController();
+        
+        c.initLoggedHome(primaryStage);
+        Scene scene = new Scene(root, primaryStage.getWidth() - 15, primaryStage.getHeight()-38);
+        //we asign new scene to current stage/window
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Your profile");
+        primaryStage.show();
     }
     
 }

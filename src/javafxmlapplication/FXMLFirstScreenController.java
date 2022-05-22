@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.Navegacion;
 import model.User;
 
@@ -61,6 +63,12 @@ public class FXMLFirstScreenController implements Initializable {
             primaryStage = stage;
             stage.setMinWidth(850.0);
             stage.setMinHeight(550.0);
+            
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent we) {
+                    AppInfo.storeSession();
+                }
+            });        
     }
 
     @FXML

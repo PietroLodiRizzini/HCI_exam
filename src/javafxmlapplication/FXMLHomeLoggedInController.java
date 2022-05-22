@@ -8,6 +8,7 @@ import DBAccess.NavegacionDAOException;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -131,6 +132,7 @@ public class FXMLHomeLoggedInController implements Initializable {
     @FXML
     private void logoutClick(ActionEvent event) throws IOException {
         AppInfo.setUser(null);
+        AppInfo.storeSession();
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLFirstScreen.fxml"));
         AnchorPane root = (AnchorPane) myLoader.load();
         FXMLFirstScreenController signInContr = myLoader.<FXMLFirstScreenController>getController();

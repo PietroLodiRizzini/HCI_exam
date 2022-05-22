@@ -19,7 +19,9 @@ import model.User;
  * @author pietro
  */
 public class AppInfo {
-    private static User user;
+    private static User user;    
+    private static int hits;
+    private static int faults;
     
     public static final boolean DEBUG = true;
     public static final String DEBUG_USERNAME = "debuguser";
@@ -30,6 +32,9 @@ public class AppInfo {
      * Allows to avoid logging in every time when DEBUG is true.
      */
     public static void initDebug() {
+        hits = 0;
+        faults = 0;
+        
         if(! AppInfo.DEBUG)
             return;
         
@@ -85,5 +90,34 @@ public class AppInfo {
             ex.printStackTrace();            
         }
         return null;
+    }
+    
+    public static void storeSession() {
+        System.out.println("Store session: " + hits + " hits, " + faults + " faults");
+        try {
+            if(user == null)
+                return;
+            
+        Session s = new Session(LocalDateTime.now(), AppInfo.getHits(), AppInfo.getFaults());
+            user.addSession(s);
+        } catch (NavegacionDAOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public static int getHits() {
+        return hits;
+    }
+
+    public static void incrementHits() {
+        AppInfo.hits += 1;
+    }
+
+    public static int getFaults() {
+        return faults;
+    }
+
+    public static void incrementFaults() {
+        AppInfo.faults += 1;
     }
 }
